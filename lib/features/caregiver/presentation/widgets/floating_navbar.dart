@@ -106,7 +106,7 @@ class FloatingNavBar extends StatelessWidget {
         child: Icon(
           isSelected ? activeIcon : icon,
           color: isSelected ? Colors.white : AppColors.primaryBlue,
-          size: 24,
+          size: 30,
         ),
       ),
     );

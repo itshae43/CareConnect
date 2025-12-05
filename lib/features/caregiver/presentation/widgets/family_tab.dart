@@ -93,12 +93,12 @@ class FamilyTab extends StatelessWidget {
           Row(
             children: [
               _buildEmergencyContact(
-                name: 'Dr. Lee',
+                name: 'Dr. Smith',
                 imageUrl: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face',
               ),
               const SizedBox(width: 15),
               _buildEmergencyContact(
-                name: 'Mom',
+                name: 'Dr. Lee',
                 imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
               ),
             ],
