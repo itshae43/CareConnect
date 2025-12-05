@@ -3,6 +3,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/overview_tab.dart';
 import '../widgets/family_tab.dart';
+import '../widgets/floating_navbar.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -13,11 +14,13 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedTab = 0; // 0 = Overview, 1 = Family
+  int _selectedNavIndex = 0; // For bottom navigation
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      extendBody: true, // Allow content to extend behind the floating navbar
       body: Column(
         children: [
           // 1. Header Section
@@ -48,18 +51,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColors.primaryBlue,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1, // Profile selected as per image
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today_outlined), label: 'Schedule'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: 'Chat'),
-        ],
+      bottomNavigationBar: FloatingNavBar(
+        currentIndex: _selectedNavIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedNavIndex = index;
+          });
+        },
       ),
     );
   }
