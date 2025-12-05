@@ -43,9 +43,21 @@ class FamilyTab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              AdherenceCard(name: 'Mom', percentage: 98),
-              AdherenceCard(name: 'Mom', percentage: 98),
-              AdherenceCard(name: 'Mom', percentage: 98),
+              AdherenceCard(
+                name: 'Mom',
+                percentage: 98,
+                imageUrl: 'https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=150&h=150&fit=crop&crop=face',
+              ),
+              AdherenceCard(
+                name: 'Dad',
+                percentage: 92,
+                imageUrl: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=150&h=150&fit=crop&crop=face',
+              ),
+              AdherenceCard(
+                name: 'Wife',
+                percentage: 95,
+                imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
+              ),
             ],
           ),
           
@@ -80,17 +92,27 @@ class FamilyTab extends StatelessWidget {
           // Emergency Contacts Row
           Row(
             children: [
-              _buildEmergencyContact(),
+              _buildEmergencyContact(
+                name: 'Dr. Lee',
+                imageUrl: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face',
+              ),
               const SizedBox(width: 15),
-              _buildEmergencyContact(),
+              _buildEmergencyContact(
+                name: 'Mom',
+                imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+              ),
             ],
           ),
+          const SizedBox(height: 100), // Space for floating navbar
         ],
       ),
     );
   }
 
-  Widget _buildEmergencyContact() {
+  Widget _buildEmergencyContact({
+    required String name,
+    required String imageUrl,
+  }) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(15),
@@ -103,23 +125,43 @@ class FamilyTab extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person_outline, size: 30, color: AppColors.primaryBlue),
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.primaryBlue.withOpacity(0.3),
+                  width: 2,
+                ),
+              ),
+              child: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage(imageUrl),
+                backgroundColor: Colors.grey.shade200,
+              ),
             ),
-            const SizedBox(height: 8),
-            const Text('Sign Out', style: TextStyle(fontWeight: FontWeight.w600)),
+            const SizedBox(height: 10),
+            Text(
+              name,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
             const SizedBox(height: 10),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               decoration: BoxDecoration(
                 color: AppColors.primaryBlue,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'Quick Call',
-                style: TextStyle(color: Colors.white, fontSize: 12),
+                'Quick-call',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             )
           ],

@@ -28,31 +28,54 @@ class OverviewTab extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: AppColors.lightGreyFill,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: const Color(0xFFE8ECF0),
+          width: 1,
+        ),
       ),
       child: ListTile(
-        leading: Icon(icon, color: AppColors.primaryBlue),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+        leading: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: AppColors.primaryBlue.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(icon, color: AppColors.primaryBlue, size: 22),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+          ),
+        ),
+        trailing: const Icon(
+          Icons.chevron_right_rounded,
+          size: 24,
+          color: Color(0xFFB0B8C1),
+        ),
       ),
     );
   }
 
-  Widget _buildActionButton(String title, {bool isOutlined = false}) {
+  Widget _buildActionButton(String title, {bool isOutlined = false, bool isSignOut = false}) {
+    final bool isSignOutButton = title == 'Sign Out' || isSignOut;
+    
     return Container(
       width: double.infinity,
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: AppColors.primaryBlue),
+        color: isSignOutButton ? const Color(0xFFF7E7E8) : Colors.white,
+        border: isSignOutButton ? Border.all(color: const Color(0xFFE88183)) : Border.all(color: AppColors.primaryBlue),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Center(
         child: Text(
           title,
-          style: const TextStyle(
-            color: AppColors.primaryBlue,
+          style: TextStyle(
+            color: isSignOutButton ? const Color(0xFFE88183) : AppColors.primaryBlue,
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),

@@ -25,16 +25,22 @@ class FloatingNavBar extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30),
+          border: Border.all(
+            color: AppColors.primaryBlue.withOpacity(0.3),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryBlue.withOpacity(0.15),
-              blurRadius: 20,
-              offset: const Offset(0, 8),
+              color: AppColors.primaryBlue.withOpacity(0.2),
+              blurRadius: 25,
+              spreadRadius: 2,
+              offset: const Offset(0, 4),
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: AppColors.primaryBlue.withOpacity(0.1),
+              blurRadius: 40,
+              spreadRadius: 5,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -42,22 +48,26 @@ class FloatingNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(
-              icon: Icons.home_rounded,
+              icon: Icons.home_outlined,
+              activeIcon: Icons.home_rounded,
               index: 0,
               isSelected: currentIndex == 0,
             ),
             _buildNavItem(
-              icon: Icons.calendar_today_rounded,
+              icon: Icons.calendar_month_outlined,
+              activeIcon: Icons.calendar_month_rounded,
               index: 1,
               isSelected: currentIndex == 1,
             ),
             _buildNavItem(
-              icon: Icons.access_time_rounded,
+              icon: Icons.schedule_outlined,
+              activeIcon: Icons.schedule_rounded,
               index: 2,
               isSelected: currentIndex == 2,
             ),
             _buildNavItem(
-              icon: Icons.person_rounded,
+              icon: Icons.person_outline_rounded,
+              activeIcon: Icons.person_rounded,
               index: 3,
               isSelected: currentIndex == 3,
             ),
@@ -69,6 +79,7 @@ class FloatingNavBar extends StatelessWidget {
 
   Widget _buildNavItem({
     required IconData icon,
+    required IconData activeIcon,
     required int index,
     required bool isSelected,
   }) {
@@ -76,17 +87,26 @@ class FloatingNavBar extends StatelessWidget {
       onTap: () => onTap(index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.primaryBlue
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
+          shape: BoxShape.circle,
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: AppColors.primaryBlue.withOpacity(0.4),
+                    blurRadius: 12,
+                    spreadRadius: 1,
+                  ),
+                ]
+              : [],
         ),
         child: Icon(
-          icon,
-          color: isSelected ? Colors.white : Colors.grey.shade400,
-          size: 26,
+          isSelected ? activeIcon : icon,
+          color: isSelected ? Colors.white : AppColors.primaryBlue,
+          size: 24,
         ),
       ),
     );

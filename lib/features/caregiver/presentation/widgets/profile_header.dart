@@ -40,8 +40,10 @@ class ProfileHeader extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 30,
+                  backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+                  ),
                   backgroundColor: Colors.grey,
-                  // backgroundImage: NetworkImage('...'), // Add image here
                 ),
                 const SizedBox(width: 15),
                 Column(
@@ -65,7 +67,7 @@ class ProfileHeader extends StatelessWidget {
                         Icon(Icons.circle, size: 10, color: Colors.green),
                         SizedBox(width: 5),
                         Text(
-                          'Active Family Members',
+                          'Active',
                           style: TextStyle(fontSize: 12, color: Colors.black87),
                         ),
                       ],

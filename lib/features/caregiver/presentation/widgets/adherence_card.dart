@@ -4,8 +4,13 @@ import '../../../../core/theme/app_colors.dart';
 class AdherenceCard extends StatelessWidget {
   final String name;
   final int percentage;
+  final String imageUrl;
 
-  const AdherenceCard({required this.name, required this.percentage});
+  const AdherenceCard({
+    required this.name,
+    required this.percentage,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +30,22 @@ class AdherenceCard extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-               const CircleAvatar(
-                radius: 20,
-                backgroundColor: AppColors.primaryDark,
+              CircleAvatar(
+                radius: 22,
+                backgroundImage: NetworkImage(imageUrl),
+                backgroundColor: Colors.grey.shade200,
               ),
               // Simulating the blue dot notification
               Positioned(
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: const BoxDecoration(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
                     color: Colors.blue,
                     shape: BoxShape.circle,
-                    border: Border.fromBorderSide(BorderSide(color: Colors.white)),
+                    border: Border.all(color: Colors.white, width: 2),
                   ),
                 ),
               )
